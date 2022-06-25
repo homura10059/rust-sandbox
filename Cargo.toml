@@ -6,4 +6,5 @@ members = [
     "xtask",
     "minigrep",
     "closures-iterators",
+    "aws-lambda-sample",
 ]

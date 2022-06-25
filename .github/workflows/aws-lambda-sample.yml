@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'aws-lambda-sample/**'
+      - '.github/workflows/aws-lambda-sample.yml'
+
+defaults:
+  run:
+    working-directory: './aws-lambda-sample'
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          components: rustfmt, clippy
+#      - uses: aws-actions/setup-sam@v1
+#      - uses: aws-actions/configure-aws-credentials@v1
+#        with:
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          aws-region: ##region##
+      - name: build
+        run: 'cargo build'
+      - name: test
+        run: 'cargo test'
+#      # sam build
+#      - run: sam build --use-container
+#      # sam deploy
+#      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-hello-world --s3-bucket ##s3-bucket## --capabilities CAPABILITY_IAM --region ##region##
