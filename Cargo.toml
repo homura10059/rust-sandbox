@@ -5,4 +5,5 @@ members = [
     "add-one",
     "xtask",
     "minigrep",
+    "closures-iterators",
 ]
