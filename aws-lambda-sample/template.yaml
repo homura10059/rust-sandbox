@@ -10,7 +10,7 @@ Resources:
       Handler: bootstrap
       Runtime: provided.al2
       Timeout: 5
-      CodeUri: target/lambda/basic/
+      CodeUri: ../target/aarch64-unknown-linux-gnu/release/aws-lambda-sample
 
 Outputs:
   FunctionName:
