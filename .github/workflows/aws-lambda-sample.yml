@@ -27,9 +27,11 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1
+      - name: setup
+        run: 'pip install cargo-lambda && cargo install cargo-lambda'
       - name: test
         run: 'cargo test'
       - name: build
-        run: 'cargo build --release --target aarch64-unknown-linux-gnu'
+        run: 'cargo lambda build --release --arm64'
       - name: sam-deploy
         run: sam deploy
